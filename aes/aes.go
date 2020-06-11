@@ -80,23 +80,22 @@ func Decrypt(key string, val string) (string, error) {
 	return string(origData), nil
 }
 
-func AesEncrypt(Key ,content string) string {
+func AesEncrypt(Key ,content string) (string,error){
 	ret, err := Encrypt(Key, content)
 	if err != nil {
-		os.Stderr.WriteString(err.Error())
-		os.Exit(1)
+		return "", err
 	}
 
-	return ret
+	return ret,nil
 }
 
-func AesDecrypt(Key ,content string)string {
+func AesDecrypt(Key ,content string)(string,error) {
 	ret, err := Decrypt(Key, content)
 	if err != nil {
-		os.Stderr.WriteString(err.Error())
-		os.Exit(1)
+		return "", err
 	}
-	return ret
+
+	return ret,nil
 }
 
 func main() {
